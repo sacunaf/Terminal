@@ -6,9 +6,9 @@ import java.io.OutputStream;
   
 public class ping {  
   
-    public ping() { 
-        
+    public ping() {  
     }
+    
     public ping(String param) { 
         
     }

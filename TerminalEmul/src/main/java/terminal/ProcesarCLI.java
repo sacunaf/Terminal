@@ -18,13 +18,15 @@ public class ProcesarCLI {
     private Options options;
 
     ProcesarCLI(String lineaTextoIngresada) throws InstantiationException {
+        Object comando;
         try {
             String[] argumento = lineaTextoIngresada.split(" ");
             String miClase = argumento[0];
 
             Class claseComando = Class.forName(miClase);
 
-            Object object = claseComando.getDeclaredConstructor().newInstance();
+            comando = claseComando.getDeclaredConstructor(argumento).newInstance();
+            System.out.println("Aqui:"+comando);
 //        try {
 //            parser = new BasicParser();
 //            cmdLine = parser.parse(options, lineaTextoIngresada);
