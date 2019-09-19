@@ -1,4 +1,4 @@
-package com.zordon.terminalemul;
+package com.zordon.terminal;
 
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;

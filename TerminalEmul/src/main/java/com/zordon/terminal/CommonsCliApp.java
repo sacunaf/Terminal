@@ -1,4 +1,4 @@
-package com.zordon.terminalemul;
+package com.zordon.terminal;
 
 import org.apache.commons.cli.*;  
   
