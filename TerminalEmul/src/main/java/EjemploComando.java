@@ -1,4 +1,4 @@
-package terminal;
+
 
 import org.apache.commons.cli.*;  
   
@@ -8,7 +8,7 @@ import java.io.OutputStream;
  * Ejemplos del uso de la librería "Apache Commons CLI"  
  * @author Carlos García. Autentia. 
  */  
-public class CliApp {  
+public class EjemploComando {  
   
     /** 
      * -ip address [-port puerto]  [err|console] [-help | -h] 
@@ -53,7 +53,7 @@ public class CliApp {
               
             // Si está la opcion de ayuda, la imprimimos y salimos.  
             if (cmdLine.hasOption("h")){    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos  
-                new HelpFormatter().printHelp(CliApp.class.getCanonicalName(), options );  
+                new HelpFormatter().printHelp(EjemploComando.class.getCanonicalName(), options );  
                 return;  
             }  
               
@@ -87,9 +87,9 @@ public class CliApp {
         } catch (org.apache.commons.cli.ParseException ex){  
             System.out.println(ex.getMessage());  
               
-            new HelpFormatter().printHelp(CliApp.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            new HelpFormatter().printHelp(EjemploComando.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
         } catch (java.lang.NumberFormatException ex){  
-            new HelpFormatter().printHelp(CliApp.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            new HelpFormatter().printHelp(EjemploComando.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
         }  
     }  
 }  

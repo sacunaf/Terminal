@@ -1,4 +1,4 @@
-package terminal;
+package procesarCLI;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -23,7 +23,7 @@ public class ProcesarCLI {
     private Options options;
 
     
-    ProcesarCLI(String textoDesdeCLI) {
+    public ProcesarCLI(String textoDesdeCLI) {
         System.out.println("Entrando a ProcesarCLI()");
         try {
             String[] argumento = textoDesdeCLI.split(" ");
