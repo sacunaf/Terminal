@@ -75,6 +75,7 @@ public class Konsole1 extends javax.swing.JFrame {
     private void jTextArea1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
+                evt.consume();
                 int longPrompt = this.getPrompt().length();
                 int posCursor = jTextArea1.getCaretPosition();
                 int lineaNro = jTextArea1.getLineOfOffset(posCursor);
@@ -85,9 +86,9 @@ public class Konsole1 extends javax.swing.JFrame {
                 // *****************************************
                 // se envia a procesar la linea se comandos
                 // *****************************************                
-                ProcesarCLI procesarCLI = new ProcesarCLI(lineaTextoIngresada);
-                String salidaDelComando = procesarCLI.ejecutar();
-
+                //ProcesarCLI procesarCLI = new ProcesarCLI(lineaTextoIngresada);
+                //String salidaDelComando = procesarCLI.ejecutar();
+                String salidaDelComando = "prueba de salida";
                 salidaATerminal(salidaDelComando);
 
             } catch (BadLocationException ex) {
@@ -97,7 +98,8 @@ public class Konsole1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextArea1KeyPressed
 
     private void salidaATerminal(String textoSalida) {
-        jTextArea1.setText(jTextArea1.getText() + textoSalida + "\n" + this.getPrompt());
+        jTextArea1.setText(jTextArea1.getText() + "\n" + textoSalida + "\n" + this.getPrompt());
+        jTextArea1.repaint();
     }
 
 
