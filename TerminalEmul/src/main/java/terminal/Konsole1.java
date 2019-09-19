@@ -83,7 +83,9 @@ public class Konsole1 extends javax.swing.JFrame {
                 int posFinalLinea = jTextArea1.getLineEndOffset(lineaNro);
                 String lineaTextoIngresada = jTextArea1.getText(posInicioLinea, posFinalLinea-posInicioLinea);
                 System.out.println("* textoCLI -> ["+lineaTextoIngresada+"]");
-                
+                // *****************************************
+                // se envia a procesar la linea se comandos
+                // *****************************************                
                 ProcesarCLI procesarCLI = new ProcesarCLI(lineaTextoIngresada);
                 String textoSalida = procesarCLI.ejecutar();
                         
