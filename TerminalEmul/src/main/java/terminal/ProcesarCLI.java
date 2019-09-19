@@ -12,29 +12,29 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 public class ProcesarCLI {
-
-    private String textoCLI;
+    
+    private String comandoNombre;
+    private String comandoParametros;
     private Class comandoClass;
     private Object comandoObj;
+    
     private CommandLineParser parser = null;
     private CommandLine cmdLine = null;
     private Options options;
-    private String comandoParametros;
 
     
     ProcesarCLI(String textoDesdeCLI) {
         System.out.println("Entrando a ProcesarCLI()");
         try {
             String[] argumento = textoDesdeCLI.split(" ");
-            String comandoNombre = argumento[0];
-            this.comandoParametros = textoDesdeCLI.substring(comandoNombre.length()+1);            
+            comandoNombre = argumento[0];
+            comandoParametros = textoDesdeCLI.substring(comandoNombre.length()+1);            
             comandoClass = Class.forName(comandoNombre);
-            comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
+            comandoObj = comandoClass.getDeclaredConstructor(String.class) .newInstance(comandoParametros);
             System.out.println("Aqui:" + comandoObj);      
         } catch (Exception ex) {
             Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
     public void testing() {
