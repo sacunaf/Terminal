@@ -85,7 +85,7 @@ public class Konsole1 extends javax.swing.JFrame {
                 System.out.println(">>>>>>"+lineaTextoIngresada);
                 
                 ProcesarCLI procesarCLI = new ProcesarCLI(lineaTextoIngresada);
-                String textoSalida = procesarCLI.ejecutar
+                String textoSalida = procesarCLI.ejecutar;
                         
                 String salidaDelComando = textoSalida;
 
