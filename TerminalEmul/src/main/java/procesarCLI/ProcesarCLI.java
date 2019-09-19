@@ -37,7 +37,7 @@ public class ProcesarCLI {
 
             System.out.println("** Comando instanciado:" + comandoObj);
         } catch (ClassNotFoundException ex) {
-            System.err.println("Comando no encontrado -----> " + ex.getMessage());
+            System.err.println("Comando no encontrado " );
         } catch (Exception ex) {
 
             Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,21 +57,6 @@ public class ProcesarCLI {
 //        } catch (ParseException ex) {
 //            Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-    }
-
-    public Object createObject(String className) {
-        Object object = null;
-        try {
-            Class classDefinition = Class.forName(className);
-            object = classDefinition.newInstance();
-        } catch (InstantiationException e) {
-            System.out.println(e);
-        } catch (IllegalAccessException e) {
-            System.out.println(e);
-        } catch (ClassNotFoundException e) {
-            System.out.println(e);
-        }
-        return object;
     }
 
     public String ejecutar() {

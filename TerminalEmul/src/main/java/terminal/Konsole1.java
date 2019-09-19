@@ -18,7 +18,7 @@ public class Konsole1 extends javax.swing.JFrame {
     private String usuario = "root";
     private String promptSep = " # ";
     private String prompt;
-   
+
     public Konsole1() {
         inicializar();
     }
@@ -34,7 +34,7 @@ public class Konsole1 extends javax.swing.JFrame {
         this.usuario = usuario;
         this.pwd = "/home/" + usuario;
         inicializar();
-        
+
     }
 
     private void inicializar() {
@@ -43,8 +43,7 @@ public class Konsole1 extends javax.swing.JFrame {
         jTextArea1.setCaretPosition(this.getPrompt().length());
         System.out.println("** Iniciando Terminal **");
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,43 +73,33 @@ public class Konsole1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextArea1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 int longPrompt = this.getPrompt().length();
                 int posCursor = jTextArea1.getCaretPosition();
-                int lineaNro = jTextArea1.getLineOfOffset(posCursor);                
-                int posInicioLinea = jTextArea1.getLineStartOffset(lineaNro)+longPrompt;
+                int lineaNro = jTextArea1.getLineOfOffset(posCursor);
+                int posInicioLinea = jTextArea1.getLineStartOffset(lineaNro) + longPrompt;
                 int posFinalLinea = jTextArea1.getLineEndOffset(lineaNro);
-                String lineaTextoIngresada = jTextArea1.getText(posInicioLinea, posFinalLinea-posInicioLinea);
-                System.out.println("* textoCLI -> ["+lineaTextoIngresada+"]");
+                String lineaTextoIngresada = jTextArea1.getText(posInicioLinea, posFinalLinea - posInicioLinea);
+                System.out.println("* textoCLI -> [" + lineaTextoIngresada + "]");
                 // *****************************************
                 // se envia a procesar la linea se comandos
                 // *****************************************                
                 ProcesarCLI procesarCLI = new ProcesarCLI(lineaTextoIngresada);
-                String textoSalida = procesarCLI.ejecutar();
-                        
-                String salidaDelComando = textoSalida;
+                String salidaDelComando = procesarCLI.ejecutar();
 
-                jTextArea1.setText(jTextArea1.getText()+salidaDelComando+"\n"+this.getPrompt());
+                salidaATerminal(salidaDelComando);
+
             } catch (BadLocationException ex) {
                 Logger.getLogger(Konsole1.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jTextArea1KeyPressed
 
-    
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Konsole1().setVisible(true);
-            }
-        });
+    private void salidaATerminal(String textoSalida) {
+        jTextArea1.setText(jTextArea1.getText() + textoSalida + "\n" + this.getPrompt());
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
@@ -118,53 +107,10 @@ public class Konsole1 extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the chroot
-     */
-    public String getChroot() {
-        return chroot;
-    }
-
-    /**
-     * @param chroot the chroot to set
-     */
-    public void setChroot(String chroot) {
-        this.chroot = chroot;
-    }
-
-    /**
-     * @return the pwd
-     */
-    public String getPwd() {
-        return pwd;
-    }
-
-    /**
-     * @param pwd the pwd to set
-     */
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    /**
      * @return the prompt
      */
     private String getPrompt() {
-        this.prompt = this.usuario+"@"+this.hostname+":"+this.pwd+this.promptSep;        
+        this.prompt = this.usuario + "@" + this.hostname + ":" + this.pwd + this.promptSep;
         return this.prompt;
     }
-   
-    /**
-     * @return the usuario
-     */
-    public String getUsuario() {
-        return usuario;
-    }
-
-    /**
-     * @param usuario the usuario to set
-     */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-  }
+}
