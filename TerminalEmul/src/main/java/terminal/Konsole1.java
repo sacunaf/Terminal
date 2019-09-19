@@ -98,6 +98,8 @@ public class Konsole1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextArea1KeyPressed
 
+    
+    
     /**
      * @param args the command line arguments
      */

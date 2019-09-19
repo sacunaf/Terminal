@@ -17,6 +17,7 @@ public class ProcesarCLI {
     private String comandoParametros;
     private Class comandoClass;
     private Object comandoObj;
+    private String consolasalida;
 
     private CommandLineParser parser = null;
     private CommandLine cmdLine = null;
@@ -25,9 +26,11 @@ public class ProcesarCLI {
     public ProcesarCLI(String textoDesdeCLI) {
         System.out.println("Entrando a ProcesarCLI()");
         try {
-            String[] argumento = textoDesdeCLI.split(" ");
+            String[] argumento = textoDesdeCLI.split(" ");            
             comandoNombre = argumento[0];
-            comandoParametros = textoDesdeCLI.substring(comandoNombre.length() + 1);
+            if(argumento.length>1) 
+                comandoParametros = textoDesdeCLI.substring(comandoNombre.length() + 1);
+            
             comandoClass = Class.forName(comandoNombre);
             comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
             //comandoObj = comandoClass.getDeclaredConstructor(new Class[]{String.class}).newInstance(argumento);
@@ -75,6 +78,20 @@ public class ProcesarCLI {
         String textoSalida = "";
 
         return textoSalida;
+    }
+
+    /**
+     * @return the consolasalida
+     */
+    public String getConsolasalida() {
+        return consolasalida;
+    }
+
+    /**
+     * @param consolasalida the consolasalida to set
+     */
+    public void setConsolasalida(String consolasalida) {
+        this.consolasalida = consolasalida;
     }
 
 }
