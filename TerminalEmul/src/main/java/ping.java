@@ -7,13 +7,15 @@ import java.io.OutputStream;
 public class ping {  
   
     public ping() {  
+                System.out.println(">>>>>>>>>>>>> Entrando a ping()");        
     }
     
     public ping(String param) { 
-        
+                System.out.println(">>>>>>>>>>>>> Entrando a ping(String param)");
     }
     public ping(String[] args) {  
         final int DEF_PORT = 60001;     // Puerto por defecto  
+                System.out.println(">>>>>>>>>>>>> Entrando a ping(String[] args)");        
           
         int               port    = 0;  
         String            ip      = null;     

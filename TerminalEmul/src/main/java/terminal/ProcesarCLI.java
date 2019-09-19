@@ -1,5 +1,6 @@
 package terminal;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,13 +20,16 @@ public class ProcesarCLI {
 
     ProcesarCLI(String lineaTextoIngresada) throws InstantiationException {
         Object comando;
+        System.out.println("Entrando a ProcesarCLI()");
         try {
             String[] argumento = lineaTextoIngresada.split(" ");
             String miClase = argumento[0];
 
             Class claseComando = Class.forName(miClase);
 
-            comando = claseComando.getDeclaredConstructor(argumento).newInstance();
+            Constructor[] constructor = claseComando.getDeclaredConstructors();
+            constructor[1].newInstance(lineaTextoIngresada);
+            comando = claseComando.getDeclaredConstructor().newInstance();
             System.out.println("Aqui:"+comando);
 //        try {
 //            parser = new BasicParser();
