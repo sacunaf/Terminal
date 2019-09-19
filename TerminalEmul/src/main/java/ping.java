@@ -1,12 +1,18 @@
-package terminal;
+
 
 import org.apache.commons.cli.*;  
   
 import java.io.OutputStream;  
   
-public class ls {  
+public class ping {  
   
-    public ls(String[] args) {  
+    public ping() { 
+        
+    }
+    public ping(String param) { 
+        
+    }
+    public ping(String[] args) {  
         final int DEF_PORT = 60001;     // Puerto por defecto  
           
         int               port    = 0;  
@@ -46,7 +52,7 @@ public class ls {
               
             // Si está la opcion de ayuda, la imprimimos y salimos.  
             if (cmdLine.hasOption("h")){    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos  
-                new HelpFormatter().printHelp(ls.class.getCanonicalName(), options );  
+                new HelpFormatter().printHelp(ping.class.getCanonicalName(), options );  
                 return;  
             }  
               
@@ -80,9 +86,9 @@ public class ls {
         } catch (org.apache.commons.cli.ParseException ex){  
             System.out.println(ex.getMessage());  
               
-            new HelpFormatter().printHelp(ls.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            new HelpFormatter().printHelp(ping.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
         } catch (java.lang.NumberFormatException ex){  
-            new HelpFormatter().printHelp(ls.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            new HelpFormatter().printHelp(ping.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
         }  
     }  
 }  

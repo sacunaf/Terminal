@@ -1,5 +1,6 @@
 package terminal;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.cli.BasicParser;
@@ -16,22 +17,47 @@ public class ProcesarCLI {
     private CommandLine cmdLine = null;
     private Options options;
 
-    ProcesarCLI(String lineaTextoIngresada) {
+    ProcesarCLI(String lineaTextoIngresada) throws InstantiationException {
         try {
-            parser = new BasicParser();
-            cmdLine = parser.parse(options, lineaTextoIngresada.split(" "));
-            
-            // Si está la opcion de ayuda, la imprimimos y salimos.
-            if (cmdLine.hasOption("h")){    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos
-                new HelpFormatter().printHelp(CliApp.class.getCanonicalName(), options );
-                return;  
-            }
-        } catch (ParseException ex) {
+            String[] argumento = lineaTextoIngresada.split(" ");
+            String miClase = argumento[0];
+
+            Class claseComando = Class.forName(miClase);
+
+            Object object = claseComando.getDeclaredConstructor().newInstance();
+//        try {
+//            parser = new BasicParser();
+//            cmdLine = parser.parse(options, lineaTextoIngresada);
+//           
+//            // Si está la opcion de ayuda, la imprimimos y salimos.
+//            if (cmdLine.hasOption("h")){    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos
+//                new HelpFormatter().printHelp(CliApp.class.getCanonicalName(), options );
+//                return;  
+//            }
+//        } catch (ParseException ex) {
+//            Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        } catch (Exception ex) {
             Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
+
     }
 
+     public Object createObject(String className) {
+        Object object = null;
+        try {
+            Class classDefinition = Class.forName(className);
+            object = classDefinition.newInstance();
+        } catch (InstantiationException e) {
+            System.out.println(e);
+        } catch (IllegalAccessException e) {
+            System.out.println(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        }
+        return object;
+    }
+    
     public String ejecutar() {
         String textoSalida = "";
 
