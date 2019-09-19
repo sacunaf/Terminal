@@ -30,7 +30,7 @@ public class ProcesarCLI {
             comandoNombre = argumento[0];
             comandoParametros = textoDesdeCLI.substring(comandoNombre.length()+1);            
             comandoClass = Class.forName(comandoNombre);
-            comandoObj = comandoClass.getDeclaredConstructor(String.class) .newInstance(comandoParametros);
+            comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
             System.out.println("Aqui:" + comandoObj);      
         } catch (Exception ex) {
             Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
