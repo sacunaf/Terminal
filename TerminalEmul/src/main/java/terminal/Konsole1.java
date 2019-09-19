@@ -92,8 +92,6 @@ public class Konsole1 extends javax.swing.JFrame {
                 jTextArea1.setText(jTextArea1.getText()+salidaDelComando+"\n"+this.getPrompt());
             } catch (BadLocationException ex) {
                 Logger.getLogger(Konsole1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(Konsole1.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jTextArea1KeyPressed

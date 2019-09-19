@@ -6,10 +6,7 @@ import java.io.OutputStream;
   
 public class ping {  
   
-    public ping() {  
-                System.out.println(">>>>>>>>>>>>> Entrando a ping()");        
-    }
-    
+     
     public ping(String param) { 
                 System.out.println(">>>>>>>>>>>>> Entrando a ping(String param)");
     }

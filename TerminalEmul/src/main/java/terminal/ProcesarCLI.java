@@ -14,24 +14,31 @@ import org.apache.commons.cli.ParseException;
 public class ProcesarCLI {
 
     private String textoCLI;
+    private Class comandoClass;
+    private Object comandoObj;
     private CommandLineParser parser = null;
     private CommandLine cmdLine = null;
     private Options options;
+    private String comandoParametros;
 
-    ProcesarCLI(String lineaTextoIngresada) throws InstantiationException {
-        Object comando;
+    
+    ProcesarCLI(String textoDesdeCLI) {
         System.out.println("Entrando a ProcesarCLI()");
         try {
-            String[] argumento = lineaTextoIngresada.split(" ");
-            String miClase = argumento[0];
+            String[] argumento = textoDesdeCLI.split(" ");
+            String comandoNombre = argumento[0];
+            this.comandoParametros = textoDesdeCLI.substring(comandoNombre.length()+1);            
+            comandoClass = Class.forName(comandoNombre);
+            comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
+            System.out.println("Aqui:" + comandoObj);      
+        } catch (Exception ex) {
+            Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-            Class claseComando = Class.forName(miClase);
-
-            Constructor[] constructor = claseComando.getDeclaredConstructors();
-            constructor[1].newInstance(lineaTextoIngresada);
-            comando = claseComando.getDeclaredConstructor().newInstance();
-            System.out.println("Aqui:"+comando);
-//        try {
+    }
+    
+    public void testing() {
+         
 //            parser = new BasicParser();
 //            cmdLine = parser.parse(options, lineaTextoIngresada);
 //           
@@ -43,13 +50,17 @@ public class ProcesarCLI {
 //        } catch (ParseException ex) {
 //            Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        } catch (Exception ex) {
-            Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
-     public Object createObject(String className) {
+     private static void removerElemento(String[] array, int index) {
+        int i = index;
+        for (; i < array.length - 1; i++) {
+            array[i] = array[i + 1];
+        }
+        array[i] = null;
+    }
+    
+    public Object createObject(String className) {
         Object object = null;
         try {
             Class classDefinition = Class.forName(className);
@@ -63,7 +74,7 @@ public class ProcesarCLI {
         }
         return object;
     }
-    
+
     public String ejecutar() {
         String textoSalida = "";
 
