@@ -12,33 +12,37 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 public class ProcesarCLI {
-    
+
     private String comandoNombre;
     private String comandoParametros;
     private Class comandoClass;
     private Object comandoObj;
-    
+
     private CommandLineParser parser = null;
     private CommandLine cmdLine = null;
     private Options options;
 
-    
     public ProcesarCLI(String textoDesdeCLI) {
         System.out.println("Entrando a ProcesarCLI()");
         try {
             String[] argumento = textoDesdeCLI.split(" ");
             comandoNombre = argumento[0];
-            comandoParametros = textoDesdeCLI.substring(comandoNombre.length()+1);            
+            comandoParametros = textoDesdeCLI.substring(comandoNombre.length() + 1);
             comandoClass = Class.forName(comandoNombre);
             comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
-            System.out.println("Aqui:" + comandoObj);      
+            //comandoObj = comandoClass.getDeclaredConstructor(new Class[]{String.class}).newInstance(argumento);
+
+            System.out.println("** Comando instanciado:" + comandoObj);
+        } catch (ClassNotFoundException ex) {
+            System.err.println("Comando no encontrado -----> " + ex.getMessage());
         } catch (Exception ex) {
+
             Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void testing() {
-         
+
 //            parser = new BasicParser();
 //            cmdLine = parser.parse(options, lineaTextoIngresada);
 //           
@@ -52,14 +56,6 @@ public class ProcesarCLI {
 //        }
     }
 
-     private static void removerElemento(String[] array, int index) {
-        int i = index;
-        for (; i < array.length - 1; i++) {
-            array[i] = array[i + 1];
-        }
-        array[i] = null;
-    }
-    
     public Object createObject(String className) {
         Object object = null;
         try {
