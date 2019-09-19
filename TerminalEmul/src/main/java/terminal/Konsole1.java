@@ -1,4 +1,4 @@
-package com.zordon.terminal;
+package terminal;
 
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
@@ -81,11 +81,13 @@ public class Konsole1 extends javax.swing.JFrame {
                 int lineaNro = jTextArea1.getLineOfOffset(posCursor);                
                 int posInicioLinea = jTextArea1.getLineStartOffset(lineaNro)+longPrompt;
                 int posFinalLinea = jTextArea1.getLineEndOffset(lineaNro);
-                String lineaIngresada = jTextArea1.getText(posInicioLinea, posFinalLinea-posInicioLinea);
+                String lineaTextoIngresada = jTextArea1.getText(posInicioLinea, posFinalLinea-posInicioLinea);
+                System.out.println(">>>>>>"+lineaTextoIngresada);
                 
-                System.out.println(">>>>>>"+lineaIngresada);
-                
-                String salidaDelComando = lineaIngresada;
+                ProcesarCLI procesarCLI = new ProcesarCLI(lineaTextoIngresada);
+                String textoSalida = procesarCLI.ejecutar
+                        
+                String salidaDelComando = textoSalida;
 
                 jTextArea1.setText(jTextArea1.getText()+salidaDelComando+"\n"+this.getPrompt());
             } catch (BadLocationException ex) {

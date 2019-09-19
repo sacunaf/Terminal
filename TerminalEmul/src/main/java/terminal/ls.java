@@ -1,19 +1,12 @@
-package com.zordon.terminal;
+package terminal;
 
 import org.apache.commons.cli.*;  
   
 import java.io.OutputStream;  
   
-/** 
- * Ejemplos del uso de la librería "Apache Commons CLI"  
- * @author Carlos García. Autentia. 
- */  
-public class CommonsCliApp {  
+public class ls {  
   
-    /** 
-     * -ip address [-port puerto]  [err|console] [-help | -h] 
-     */  
-    public static void main(String[] args) {  
+    public ls(String[] args) {  
         final int DEF_PORT = 60001;     // Puerto por defecto  
           
         int               port    = 0;  
@@ -53,7 +46,7 @@ public class CommonsCliApp {
               
             // Si está la opcion de ayuda, la imprimimos y salimos.  
             if (cmdLine.hasOption("h")){    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos  
-                new HelpFormatter().printHelp(CommonsCliApp.class.getCanonicalName(), options );  
+                new HelpFormatter().printHelp(ls.class.getCanonicalName(), options );  
                 return;  
             }  
               
@@ -87,9 +80,9 @@ public class CommonsCliApp {
         } catch (org.apache.commons.cli.ParseException ex){  
             System.out.println(ex.getMessage());  
               
-            new HelpFormatter().printHelp(CommonsCliApp.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            new HelpFormatter().printHelp(ls.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
         } catch (java.lang.NumberFormatException ex){  
-            new HelpFormatter().printHelp(CommonsCliApp.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            new HelpFormatter().printHelp(ls.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
         }  
     }  
 }  
