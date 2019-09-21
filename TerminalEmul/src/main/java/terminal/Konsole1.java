@@ -86,9 +86,9 @@ public class Konsole1 extends javax.swing.JFrame {
                 // *****************************************
                 // se envia a procesar la linea se comandos
                 // *****************************************                
-                //ProcesarCLI procesarCLI = new ProcesarCLI(lineaTextoIngresada);
-                //String salidaDelComando = procesarCLI.ejecutar();
-                String salidaDelComando = "prueba de salida";
+                ProcesarCLI procesarCLI = new ProcesarCLI(lineaTextoIngresada);
+                String salidaDelComando = procesarCLI.ejecutar();
+                //String salidaDelComando = "prueba de salida";
                 salidaATerminal(salidaDelComando);
 
             } catch (BadLocationException ex) {

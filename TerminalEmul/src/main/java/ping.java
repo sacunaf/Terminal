@@ -10,6 +10,7 @@ public class ping {
     public ping(String param) { 
                 System.out.println(">>>>>>>>>>>>> Entrando a ping(String param)");
     }
+    
     public ping(String[] args) {  
         final int DEF_PORT = 60001;     // Puerto por defecto  
                 System.out.println(">>>>>>>>>>>>> Entrando a ping(String[] args)");        

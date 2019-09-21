@@ -25,6 +25,7 @@ public class ProcesarCLI {
 
     public ProcesarCLI(String textoDesdeCLI) {
         System.out.println("Entrando a ProcesarCLI()");
+        setConsolaSalida("");
         try {
             String[] argumento = textoDesdeCLI.split(" ");
             
@@ -39,7 +40,7 @@ public class ProcesarCLI {
                 comandoObj = comandoClass.getDeclaredConstructor().newInstance();
             }
 
-            anexarAConsolaSalida("** Comando instanciado:" + comandoObj);
+            anexarAConsolaSalida(" >> Comando instanciado: " + comandoNombre);
             
         } catch (ClassNotFoundException ex) {
             anexarAConsolaSalida("Comando no encontrado ");
