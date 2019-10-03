@@ -24,7 +24,6 @@ public class EquipoPC {
     private String hostname = "localhost";
     private String ip = "127.0.0.1";
     private boolean servicios = false;
-    private SistemaArchivos fs;
     private ShellTerminal shell;
 
     public EquipoPC() {
