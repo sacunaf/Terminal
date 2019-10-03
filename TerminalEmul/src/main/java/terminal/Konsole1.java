@@ -59,6 +59,7 @@ public class Konsole1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Courier 10 Pitch", 0, 14)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

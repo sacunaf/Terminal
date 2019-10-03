@@ -72,7 +72,7 @@ public class ProcesarCLI {
 
     public void anexarAConsolaSalida(String consolaSalida) {
 
-        this.consolaSalida = this.consolaSalida + consolaSalida + "/n";
+        this.consolaSalida = this.consolaSalida + consolaSalida + "\n";
     }
 
 }
