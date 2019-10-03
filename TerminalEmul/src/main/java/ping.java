@@ -8,16 +8,10 @@ import java.io.StringWriter;
 public class ping {
 
     private String[] args;
-    HelpFormatter formatter = new HelpFormatter();
 
     public ping(String param) {
-        System.out.println(">>>>>>>>>>>>> Entrando a ping(String param)");
         args = param.split(" ");
     }
-//    
-//    public ping(int i, String param) { 
-//                System.out.println(">>>>>>>>>>>>> Entrando a ping(String param)");
-//    }
 
     public ping(String[] args) {
         this.args = args;
@@ -25,7 +19,6 @@ public class ping {
 
     public String ejecutar() {
         final int DEF_PORT = 60001;     // Puerto por defecto  
-        System.out.println(">>>>>>>>>>>>> Entrando a ejectur()");
 
         int port = 0;
         String ip = null;
