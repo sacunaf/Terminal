@@ -40,11 +40,11 @@ public class ProcesarCLI {
                comandoParametros = "";
                comandoObj = comandoClass.getDeclaredConstructor().newInstance();
             }
-            Method mthd = comandoClass.getDeclaredMethod("ejecutar",String.class);
+            Method mthd = comandoClass.getDeclaredMethod("ejecutar");
             System.out.println(" metodo:"+mthd);
-            String salida = (String) mthd.invoke(comandoObj,"hola");
+            String salida = (String) mthd.invoke(comandoObj);
             
-            anexarAConsolaSalida(" >> Comando instanciado: " + comandoNombre);
+            anexarAConsolaSalida(" >> " + salida);
         } catch (ClassNotFoundException ex) {
             anexarAConsolaSalida("Error comando no encontrado ");
 
@@ -72,7 +72,7 @@ public class ProcesarCLI {
 
     public void anexarAConsolaSalida(String consolaSalida) {
 
-        this.consolaSalida = this.consolaSalida + consolaSalida;
+        this.consolaSalida = this.consolaSalida + consolaSalida + "/n";
     }
 
 }
