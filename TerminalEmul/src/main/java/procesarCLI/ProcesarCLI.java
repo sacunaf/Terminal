@@ -1,5 +1,6 @@
 package procesarCLI;
 
+import java.lang.reflect.Constructor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,6 @@ public class ProcesarCLI {
 
     public String ejecutar() {
         try {
-            String textoSalida = "";
             argumentos = textoDesdeCLI.split(" ");
             comandoNombre = argumentos[0];
             comandoClass = Class.forName(comandoNombre);
@@ -30,9 +30,9 @@ public class ProcesarCLI {
 
                 Class args[] = new Class[1];
                 args[0] = String.class;
-
+                Constructor constructor = comandoClass.getDeclaredConstructor(String.class);
 //                comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
-                comandoObj = comandoClass.getDeclaredConstructor(args).newInstance(argumentos);
+                comandoObj = constructor.newInstance((Object[]) args);
 
 // var Constructor = Platform1.class.getDeclaredConstructor(Java.array("java.lang.Class",[Java.use("java.lang.String").class]));
             } else {                       // No tiene paramatros llamo al constructor sin parametros
@@ -41,11 +41,11 @@ public class ProcesarCLI {
             }
 
             anexarAConsolaSalida(" >> Comando instanciado: " + comandoNombre);
+        } catch (ClassNotFoundException ex) {
+            anexarAConsolaSalida("Error comando no encontrado ");
 
         } catch (Exception ex) {
             anexarAConsolaSalida("Error en " + ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProcesarCLI.class.getName()).log(Level.SEVERE, null, ex);
         }
         return getConsolaSalida();
 
