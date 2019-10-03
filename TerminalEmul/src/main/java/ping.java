@@ -5,19 +5,27 @@ import org.apache.commons.cli.*;
 import java.io.OutputStream;  
   
 public class ping {  
-  
-     
+    private String[] args;
+    HelpFormatter formatter = new HelpFormatter();
+
     public ping(String param) { 
-                System.out.println(">>>>>>>>>>>>> Entrando a ping(String param)");
+           System.out.println(">>>>>>>>>>>>> Entrando a ping(String param)");
+           args =param.split(" ");
     }
-    
-    public ping(String[] args) {  
+//    
+//    public ping(int i, String param) { 
+//                System.out.println(">>>>>>>>>>>>> Entrando a ping(String param)");
+//    }
+    public ping(String[] args) { 
+        this.args = args;
+    }
+    public String ejecutar() {  
         final int DEF_PORT = 60001;     // Puerto por defecto  
                 System.out.println(">>>>>>>>>>>>> Entrando a ping(String[] args)");        
           
         int               port    = 0;  
         String            ip      = null;     
-        OutputStream      output  = null;  
+        OutputStream      output  = null;          
         CommandLineParser parser  = null;  
         CommandLine       cmdLine = null;         
   
@@ -49,7 +57,7 @@ public class ping {
             // Si está la opcion de ayuda, la imprimimos y salimos.  
             if (cmdLine.hasOption("h")){    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos  
                 new HelpFormatter().printHelp(ping.class.getCanonicalName(), options );  
-                return;  
+                return "holaaaaaa";  
             }  
               
             // Si el usuario ha especificado el puerto lo leemos          
@@ -81,10 +89,12 @@ public class ping {
               
         } catch (org.apache.commons.cli.ParseException ex){  
             System.out.println(ex.getMessage());  
-              
-            new HelpFormatter().printHelp(ping.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            formatter.printHelp(ping.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            output = System.out; 
         } catch (java.lang.NumberFormatException ex){  
-            new HelpFormatter().printHelp(ping.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
-        }  
+            formatter.printHelp(ping.class.getCanonicalName(), options );    // Error, imprimimos la ayuda  
+            output = System.out; 
+        }          
+        return "";
     }  
 }  
