@@ -9,8 +9,8 @@ package terminal;
  *
  * @author junta
  */
-public class CSTerminal {
-    /**
+public class NewClass {
+   /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -19,5 +19,5 @@ public class CSTerminal {
         consola.setVisible(true);
 
     }
-    
+        
 }

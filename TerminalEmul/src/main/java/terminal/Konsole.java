@@ -10,7 +10,7 @@ import javax.swing.text.BadLocationException;
  *
  * @author junta
  */
-public class Konsole1 extends javax.swing.JFrame {
+public class Konsole extends javax.swing.JFrame {
 
     private String hostname = "localhost";
     private String chroot = "~";
@@ -19,17 +19,17 @@ public class Konsole1 extends javax.swing.JFrame {
     private String promptSep = " # ";
     private String prompt;
 
-    public Konsole1() {
+    public Konsole() {
         inicializar();
     }
 
-    public Konsole1(String hostname) {
+    public Konsole(String hostname) {
         this.hostname = hostname;
         this.pwd = "~";
         inicializar();
     }
 
-    public Konsole1(String hostname, String usuario) {
+    public Konsole(String hostname, String usuario) {
         this.hostname = hostname;
         this.usuario = usuario;
         this.pwd = "/home/" + usuario;
@@ -93,7 +93,7 @@ public class Konsole1 extends javax.swing.JFrame {
                 salidaATerminal(salidaDelComando);
 
             } catch (BadLocationException ex) {
-                Logger.getLogger(Konsole1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Konsole.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jTextArea1KeyPressed
