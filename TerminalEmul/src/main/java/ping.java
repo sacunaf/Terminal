@@ -28,7 +28,7 @@ public class ping {
         Options options = new Options();  
         options.addOption("ip",     true,  "IP de destino");  
         options.addOption("port",   true,  "Puerto destino");  
-        options.addOption("h",      "help", false, "Imprime el mensaje de ayuda");   
+        options.addOption("h", "help", false, "Imprime el mensaje de ayuda");   
           
         // No pueden aparecen las dos opciones simultáneamente.  
         OptionGroup group =  new OptionGroup();  
@@ -38,18 +38,14 @@ public class ping {
           
           
         try {  
-              
           ///////////////////////////////////////////////////////////////////////  
           // Fase 2: Parseamos la entrada con la configuración establecida  
           ///////////////////////////////////////////////////////////////////////  
-        
             parser  = new BasicParser();  
             cmdLine = parser.parse(options, args);  
-              
           ///////////////////////////////////////////////////////////////////////  
           // Fase 3: Analizamos los resultados y realizamos las tareas pertinentes  
           ///////////////////////////////////////////////////////////////////////  
-              
             // Si está la opcion de ayuda, la imprimimos y salimos.  
             if (cmdLine.hasOption("h")){    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos  
                 new HelpFormatter().printHelp(ping.class.getCanonicalName(), options );  
