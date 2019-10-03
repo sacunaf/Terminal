@@ -1,6 +1,8 @@
 package procesarCLI;
 
 import java.lang.reflect.Constructor;
+import java.lang.Class;
+import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,22 +28,22 @@ public class ProcesarCLI {
             comandoNombre = argumentos[0];
             comandoClass = Class.forName(comandoNombre);
             if (argumentos.length > 1) {    // Si tiene paramatros llamo al constructor con parametro String                
-                comandoParametros = textoDesdeCLI.substring(comandoNombre.length() + 1);
-//                comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
-
-                Class args[] = new Class[1];
-                args[0] = String.class;
-                Constructor constructor = comandoClass.getDeclaredConstructor(args);
-                Class<?>... parameterTypes
-
-                comandoObj = constructor.newInstance(argumentos);
-
-// var Constructor = Platform1.class.getDeclaredConstructor(Java.array("java.lang.Class",[Java.use("java.lang.String").class]));
+               comandoParametros = textoDesdeCLI.substring(comandoNombre.length() + 1);
+               comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
+               // Object args = new String[0];
+               // Class args[] = new Class[1];
+               // args[0] = String.class;
+               // Constructor constructor;
+               // constructor = comandoClass.getDeclaredConstructor(String[].class);
+               // comandoObj = constructor.newInstance((Object[]) argumentos);              
             } else {                       // No tiene paramatros llamo al constructor sin parametros
-                comandoParametros = "";
-                comandoObj = comandoClass.getDeclaredConstructor().newInstance();
+               comandoParametros = "";
+               comandoObj = comandoClass.getDeclaredConstructor().newInstance();
             }
-
+            Method mthd = comandoClass.getDeclaredMethod("ejecutar",String.class);
+            System.out.println(" metodo:"+mthd);
+            String salida = (String) mthd.invoke(comandoObj,"hola");
+            
             anexarAConsolaSalida(" >> Comando instanciado: " + comandoNombre);
         } catch (ClassNotFoundException ex) {
             anexarAConsolaSalida("Error comando no encontrado ");
