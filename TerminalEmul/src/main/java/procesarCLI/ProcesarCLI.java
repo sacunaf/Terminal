@@ -27,12 +27,14 @@ public class ProcesarCLI {
             comandoClass = Class.forName(comandoNombre);
             if (argumentos.length > 1) {    // Si tiene paramatros llamo al constructor con parametro String                
                 comandoParametros = textoDesdeCLI.substring(comandoNombre.length() + 1);
+//                comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
 
                 Class args[] = new Class[1];
                 args[0] = String.class;
-                Constructor constructor = comandoClass.getDeclaredConstructor(String.class);
-//                comandoObj = comandoClass.getDeclaredConstructor(String.class).newInstance(comandoParametros);
-                comandoObj = constructor.newInstance((Object[]) args);
+                Constructor constructor = comandoClass.getDeclaredConstructor(args);
+                Class<?>... parameterTypes
+
+                comandoObj = constructor.newInstance(argumentos);
 
 // var Constructor = Platform1.class.getDeclaredConstructor(Java.array("java.lang.Class",[Java.use("java.lang.String").class]));
             } else {                       // No tiene paramatros llamo al constructor sin parametros
@@ -46,6 +48,7 @@ public class ProcesarCLI {
 
         } catch (Exception ex) {
             anexarAConsolaSalida("Error en " + ex);
+            System.err.println(">>>>>>>>"+ ex);
         }
         return getConsolaSalida();
 
